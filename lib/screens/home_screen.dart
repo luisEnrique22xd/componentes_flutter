@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practica3/theme/app_theme.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,26 +11,35 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Componentes de flutter')
         ),
         body: ListView(
-          children:const <Widget> [
+          children: <Widget> [
             ListTile(
-              title: Text('ando enfermo ptm'),
-              subtitle: Text('inviten un bacardios o una pastilla'),
-              leading: Icon(Icons.sick),
-              trailing: Icon(Icons.arrow_circle_right_outlined),
+              title: Text('Entradas', 
+              //style: Theme.of(context) textTheme.headlineLarge, ),
+              style: AppTheme.lightTheme.textTheme.headlineLarge,
+              ),
+              subtitle:  Text('Introduciendo valores',
+              style:  AppTheme.lightTheme.textTheme.bodySmall,),
+              leading: const Icon(Icons.input),
+              trailing: const Icon(Icons.arrow_circle_right_outlined),
             ),
-            Divider(),
-            ListTile(
-              title: Text('los warrios van a ganar anillo este año'),
-              subtitle: Text('no me molesten en los playoffs'),
-              leading: Icon(Icons.sports_basketball_rounded),
-              trailing: Icon(Icons.arrow_circle_right_outlined),
-            ),
-            Divider(),
+            const Divider(),
              ListTile(
-              title: Text('Golden State Warrios NBA Champions 2022'),
-              subtitle: Text('Boston, Massachusetts 06/16/2022'),
-              leading: Icon(Icons.sports_basketball_rounded),
-              trailing: Icon(Icons.arrow_circle_right_outlined),
+              title: Text('Listview.builder',
+              style: AppTheme.lightTheme.textTheme.headlineLarge, ),
+              subtitle:  Text('Lista con scroll infinito',
+              style:  AppTheme.lightTheme.textTheme.bodySmall,),
+              leading: const Icon(Icons.list),
+              trailing: const Icon(Icons.arrow_circle_right_outlined),
+            ),
+            const Divider(),
+              ListTile(
+              title: Text('Notificaciones',
+              style: AppTheme.lightTheme.textTheme.headlineLarge,
+              ),
+              subtitle:  Text('Mostrar una notificacion', 
+              style:  AppTheme.lightTheme.textTheme.bodySmall,),
+              leading: const Icon(Icons.notification_add),
+              trailing: const Icon(Icons.arrow_circle_right_outlined),
             ),
           ],
         ),
