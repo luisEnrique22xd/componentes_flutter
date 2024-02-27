@@ -45,6 +45,12 @@ class AppTheme{
       decorationThickness: 1.0,
 
     ),
+    headlineMedium: GoogleFonts.montserrat(
+      color: seconColor,
+      fontSize: 21.0,
+      fontWeight: FontWeight.bold,
+      
+      ),
     //estilo para subtitulo
     bodySmall: GoogleFonts.amethysta(
       color: seconColor,
