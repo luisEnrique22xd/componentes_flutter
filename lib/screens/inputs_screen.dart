@@ -19,26 +19,34 @@ class _InputsScreenState extends State<InputsScreen> {
       appBar: AppBar(
         title: const Text('Entradas'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text('Entradas',
-          style:  AppTheme.lightTheme.textTheme.headlineLarge,),
-          entradaNombre(),
-          entradaSwitch(),
-          entradaSlider(),
-           const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly  ,
-            children: [
-              ElevatedButton(onPressed: null, child: Text('Regresar',)
-              ),
-              ElevatedButton(onPressed: null, child: Text('Ventana de datos',)
-              )
+      body: Padding(
+        padding: const EdgeInsets.all(100.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text('Entradas',
+            style:  AppTheme.lightTheme.textTheme.headlineLarge,),
+            entradaNombre(),
+            entradaSwitch(),
+            entradaSlider(),
+            const ElevatedButton(onPressed: null, child: Text('Guardar',)
+            ),
             ],
+            ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const[
+          BottomNavigationBarItem(icon: Icon(Icons.home),
+          label: "Home"
           ),
-        ],
-      ),
-    );
+          BottomNavigationBarItem(
+          icon: Icon(Icons.data_object_rounded),
+          label: "Datos",
+          )
+          ]
+          ),
+         
+      );
   }
 
   TextField entradaNombre() {
@@ -87,7 +95,7 @@ class _InputsScreenState extends State<InputsScreen> {
               onChanged: (value){
               setState(() {
                 sliderValue = value;
-                print('Se cambio el slider: $sliderValue');
+                
               });
             })
       ],
