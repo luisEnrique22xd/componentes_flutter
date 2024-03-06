@@ -13,6 +13,7 @@ class InputsScreen extends StatefulWidget {
 class _InputsScreenState extends State<InputsScreen> {
   bool switchValue = false;//controlar el witget switch
   double sliderValue = 0.0;
+  int radioSelected = 0;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -29,6 +30,7 @@ class _InputsScreenState extends State<InputsScreen> {
             entradaNombre(),
             entradaSwitch(),
             entradaSlider(),
+            entradaRadio(),
             const ElevatedButton(onPressed: null, child: Text('Guardar',)
             ),
             ],
@@ -98,6 +100,56 @@ class _InputsScreenState extends State<InputsScreen> {
                 
               });
             })
+      ],
+    );
+  }
+  Column entradaRadio(){
+    return Column(
+      children: [
+        Text('What do you like for movile develop?',
+        style: AppTheme.lightTheme.textTheme.headlineLarge,
+        ),
+        ListTile(
+          title: Text('Kotlin',
+          style: AppTheme.lightTheme.textTheme.headlineSmall,
+          ),
+          leading: Transform.scale(
+            scale: 1.5,
+            
+            child: Radio(//obligatorio para radio
+              //posicion 
+              value: 1,
+              groupValue: radioSelected,
+              onChanged: (value){
+                setState(() {
+                  radioSelected = value!;
+                print('Seleccionado el boton radio: $radioSelected');
+                });
+              },
+            
+            ),
+          ),
+        ),
+        ListTile(
+          title: Text('Flutter',
+          style: AppTheme.lightTheme.textTheme.headlineSmall,
+          ),
+          leading: Transform.scale(
+            scale: 1.5,
+            child: Radio(//obligatorio para radio
+              //posicion 
+              value: 1,
+              groupValue: radioSelected,
+              onChanged: (value){
+                setState(() {
+                  radioSelected = value!;
+                print('Seleccionado el boton radio: $radioSelected');
+                });
+              },
+            
+            ),
+          ),
+        )
       ],
     );
   }
