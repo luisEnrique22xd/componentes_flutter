@@ -14,6 +14,9 @@ class _InputsScreenState extends State<InputsScreen> {
   bool switchValue = false;//controlar el witget switch
   double sliderValue = 0.0;
   int radioSelected = 0;
+  bool checkboxValue1 = false;
+  bool checkboxValue2 = false;
+  bool checkboxValue3 = false;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -31,6 +34,10 @@ class _InputsScreenState extends State<InputsScreen> {
             entradaSwitch(),
             entradaSlider(),
             entradaRadio(),
+            Text('que usas para correr tus apps?',
+            style: AppTheme.lightTheme.textTheme.headlineLarge,
+            ),
+            entradasCheck(),
             const ElevatedButton(onPressed: null, child: Text('Guardar',)
             ),
             ],
@@ -150,6 +157,46 @@ class _InputsScreenState extends State<InputsScreen> {
             ),
           ),
         )
+      ],
+    );
+  }
+  Row entradasCheck(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text('Navegador',
+        style: AppTheme.lightTheme.textTheme.bodySmall,),
+        Transform.scale(
+          scale: 1.5,          child: Checkbox(
+            value: checkboxValue1,
+            onChanged: (value){
+              setState(() {
+                checkboxValue1 = value!;
+              });
+            }),
+        ),
+        Text('Emulador',
+        style: AppTheme.lightTheme.textTheme.bodySmall,),
+        Transform.scale(
+          scale: 1.5,          child: Checkbox(
+            value: checkboxValue2,
+            onChanged: (value){
+              setState(() {
+                checkboxValue2 = value!;
+              });
+            }),
+        ),
+        Text('Dispositivo fisico',
+        style: AppTheme.lightTheme.textTheme.bodySmall,),
+        Transform.scale(
+          scale: 1.5,          child: Checkbox(
+            value: checkboxValue3,
+            onChanged: (value){
+              setState(() {
+                checkboxValue3 = value!;
+              });
+            }),
+        ),
       ],
     );
   }
