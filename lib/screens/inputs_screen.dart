@@ -1,6 +1,10 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:practica3/screens/home_screen.dart';
+import 'package:practica3/screens/image_screens.dart';
+import 'package:practica3/screens/infinit_scroll_screen.dart';
+import 'package:practica3/screens/notifications_screen.dart';
 import 'package:practica3/theme/app_theme.dart';
 
 class InputsScreen extends StatefulWidget {
@@ -17,6 +21,35 @@ class _InputsScreenState extends State<InputsScreen> {
   bool checkboxValue1 = false;
   bool checkboxValue2 = false;
   bool checkboxValue3 = false;
+  int indexNavigation = 0 ;
+
+  openScreen(int index, BuildContext context){//variavle buildcontext puede que no la pida pero es mejor enviarla
+  MaterialPageRoute ruta = MaterialPageRoute( // variable para la ruta
+    builder: (context) => const HomeScreen());
+  switch(index){
+    case 0: 
+      ruta = MaterialPageRoute( // variable para la ruta
+      builder: (context) => const HomeScreen());
+      break;
+    case 1: 
+      ruta = MaterialPageRoute( // variable para la ruta
+      builder: (context) => const InfinitScrollScreen());  
+      break;
+    case 2:
+      ruta = MaterialPageRoute( // variable para la ruta
+      builder: (context) => const NotificationsScreen());
+      break;
+    case 3: 
+      ruta = MaterialPageRoute( // variable para la ruta
+      builder: (context) => const ImageScreen());    
+      break;
+  }
+  setState(() {
+    indexNavigation = index; 
+    Navigator.push(context, ruta);
+  });
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -44,13 +77,30 @@ class _InputsScreenState extends State<InputsScreen> {
             ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: indexNavigation,
+          backgroundColor: AppTheme.mainColor,
+          unselectedItemColor: Colors.amber,
+          selectedItemColor: Colors.blue,
+          onTap: (index)=> openScreen(index, context),//para ver en que ventana estoy // openScreen metodo es para las rutas
           items: const[
           BottomNavigationBarItem(icon: Icon(Icons.home),
-          label: "Home"
+          label: "Home",
           ),
           BottomNavigationBarItem(
-          icon: Icon(Icons.data_object_rounded),
-          label: "Datos",
+          icon: Icon(Icons.list_alt_outlined),
+          label: "List.view.builder",
+          ),
+          BottomNavigationBarItem(
+          icon: Icon(Icons.notifications_active),
+          label: "Notificaciones",
+          ),
+          BottomNavigationBarItem(
+          icon: Icon(Icons.image),
+          label: "Imagenes",
+          ),
+          BottomNavigationBarItem(
+          icon: Icon(Icons.exit_to_app_outlined),
+          label: "Salir",
           )
           ]
           ),
