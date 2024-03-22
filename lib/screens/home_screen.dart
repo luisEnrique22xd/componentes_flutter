@@ -110,6 +110,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(context, ruta4);
               },
             ),
+            const Divider(),
           ],
         ),
     );

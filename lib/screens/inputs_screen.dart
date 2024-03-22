@@ -1,6 +1,7 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:practica3/models/data.dart';
+import 'package:practica3/screens/data_screens.dart';
 import 'package:practica3/screens/home_screen.dart';
 import 'package:practica3/screens/image_screens.dart';
 import 'package:practica3/screens/infinit_scroll_screen.dart';
@@ -15,9 +16,10 @@ class InputsScreen extends StatefulWidget {
 }
 
 class _InputsScreenState extends State<InputsScreen> {
+  String? nombre;
   bool switchValue = false;//controlar el witget switch
   double sliderValue = 0.0;
-  int radioSelected = 0;
+  String? radioSelected ;
   bool checkboxValue1 = false;
   bool checkboxValue2 = false;
   bool checkboxValue3 = false;
@@ -43,8 +45,10 @@ class _InputsScreenState extends State<InputsScreen> {
       ruta = MaterialPageRoute( // variable para la ruta
       builder: (context) => const ImageScreen());    
       break;
+    case 4: 
+      SystemChannels.platform.invokeMethod('SystemNavigator.pop');
   }
-  setState(() {
+  setState(() { // comportamiento solo valido para moviles 
     indexNavigation = index; 
     Navigator.push(context, ruta);
   });
@@ -71,7 +75,11 @@ class _InputsScreenState extends State<InputsScreen> {
             style: AppTheme.lightTheme.textTheme.headlineLarge,
             ),
             entradasCheck(),
-            const ElevatedButton(onPressed: null, child: Text('Guardar',)
+             ElevatedButton(onPressed: (){ //Boton con funcionalidad
+              Data data = Data(nomb: nombre!, gusto: switchValue, calif: sliderValue.round(), movil: radioSelected!, nav: checkboxValue1, emula: checkboxValue2, device: checkboxValue3);
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>  DataScreen(datos: data)
+              ));
+            }, child: const Text('Guardar',),
             ),
             ],
             ),
@@ -116,6 +124,7 @@ class _InputsScreenState extends State<InputsScreen> {
           labelText: 'Escribe tu nombre',
           labelStyle: AppTheme.lightTheme.textTheme.headlineLarge
           ),
+          onChanged: (text) => nombre = text,
         );
   }
 
@@ -175,12 +184,12 @@ class _InputsScreenState extends State<InputsScreen> {
             
             child: Radio(//obligatorio para radio
               //posicion 
-              value: 1,
+              value: "kotlin",
               groupValue: radioSelected,
               onChanged: (value){
                 setState(() {
                   radioSelected = value!;
-                print('Seleccionado el boton radio: $radioSelected');
+                //print('Seleccionado el boton radio: $radioSelected');
                 });
               },
             
@@ -195,12 +204,12 @@ class _InputsScreenState extends State<InputsScreen> {
             scale: 1.5,
             child: Radio(//obligatorio para radio
               //posicion 
-              value: 1,
+              value: 'Flutter',
               groupValue: radioSelected,
               onChanged: (value){
                 setState(() {
                   radioSelected = value!;
-                print('Seleccionado el boton radio: $radioSelected');
+                //print('Seleccionado el boton radio: $radioSelected');
                 });
               },
             
